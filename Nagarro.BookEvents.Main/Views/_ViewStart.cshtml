@@ -1,0 +1,20 @@
+﻿@{
+    HttpCookie cookie = Request.Cookies["UserInfo"];
+    if(cookie != null)
+    {
+        bool isLogin = Boolean.TryParse(cookie["isLogin"], out isLogin);
+        if (isLogin == true)
+        {
+            Layout = "~/Views/Shared/_Layout2.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}

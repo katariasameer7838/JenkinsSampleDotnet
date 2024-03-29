@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model List<Nagarro.BookEvents.Main.Models.EventListModel>
+<div class="home_mainHeading_div">
+    <h1 class="home_mainHeading_welcome" style="text-align:center">Welcome</h1>
+</div>
+<div class="home_table_div">
+    <table width="800" align="center" style="margin-top:50px">
+        <tr>
+            <th style="text-align:center">Past Events, Updated</th>
+            <th style="text-align:center">Upcoming Events, Updated</th>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            if (item.Date < DateTime.Now.Date)
+                            {
+                                <li>@Html.ActionLink(item.Title, "EventDetail", "BookEvent", new { id = item.EventId }, null)</li>
+                            }
+                        }
+                    }
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            if (item.Date >= DateTime.Now.Date)
+                            {
+                                <li>@Html.ActionLink(item.Title, "EventDetail", "BookEvent",new { id = item.EventId },null)</li>
+                            }
+                        }
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+@*@Html.ActionLink("", "EventDetails", "BookEvents", new { id = "" }, null);*@
